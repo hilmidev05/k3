@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>APAR - Alat K3</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'sans-serif'] }
+        }
+      }
+    }
+  </script>
+  <style>
+    .youtube-embed {
+      aspect-ratio: 16 / 9;
+      width: 100%;
+      border-radius: 0.75rem;
+    }
+    #qrcode {
+      width: fit-content;
+      margin: 0 auto;
+    }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans">
+
+  <div class="max-w-4xl mx-auto px-4 py-6">
+
+    <!-- === BAGIAN INFO ALAT K3 === -->
+    <div class="bg-white rounded-xl shadow-md overflow-hidden mb-12">
+      <div class="p-6 border-b border-gray-200">
+        <h1 class="text-2xl font-bold text-blue-800 mb-1">Alat Pemadam Api Ringan (APAR)</h1>
+        <p class="text-gray-600">Informasi & Petunjuk Penggunaan</p>
+      </div>
+
+      <div class="p-6">
+        <!-- Video -->
+        <div class="mb-6">
+          <h2 class="text-lg font-semibold text-gray-800 mb-2">Cara Penggunaan</h2>
+          <iframe
+            class="youtube-embed"
+            src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+            title="Cara Menggunakan APAR"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+          </iframe>
+        </div>
+
+        <!-- Info -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+          <div>
+            <h3 class="font-medium text-gray-700">Expired</h3>
+            <p class="font-semibold text-red-600">24 November 2025</p>
+          </div>
+          <div>
+            <h3 class="font-medium text-gray-700">Jenis</h3>
+            <p>Dry Chemical Powder (DCP)</p>
+          </div>
+          <div>
+            <h3 class="font-medium text-gray-700">Kapasitas</h3>
+            <p>6 kg</p>
+          </div>
+          <div>
+            <h3 class="font-medium text-gray-700">Lokasi</h3>
+            <p>Lantai 2, Dekat Ruang Server</p>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="font-semibold text-gray-800 mb-2">Langkah Penggunaan (P.A.S.S)</h3>
+          <ul class="list-disc pl-5 space-y-1 text-gray-700">
+            <li><span class="font-medium">P</span> – Pull the pin</li>
+            <li><span class="font-medium">A</span> – Aim at base of fire</li>
+            <li><span class="font-medium">S</span> – Squeeze handle</li>
+            <li><span class="font-medium">S</span> – Sweep side to side</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- === BAGIAN QR CODE === -->
+    <div class="bg-white rounded-xl shadow-md p-6 text-center">
+      <h2 class="text-xl font-bold text-gray-800 mb-4">Scan QR Code untuk Akses Halaman Ini</h2>
+      <p class="text-gray-600 text-sm mb-4">
+        Arahkan kamera ponsel Anda ke QR code di bawah untuk membuka informasi APAR ini langsung di browser.
+      </p>
+      <div id="qrcode"></div>
+      <p class="text-xs text-gray-500 mt-3">
+        QR code ini mengarah ke: <span id="current-url" class="font-mono"></span>
+      </p>
+    </div>
+
+  </div>
+
+  <!-- QR Code Generator (CDN) -->
+  <script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js"></script>
+  <script>
+    // Ambil URL halaman ini
+    const currentUrl = window.location.href;
+    document.getElementById('current-url').textContent = currentUrl;
+
+    // Generate QR Code
+    const qr = qrcode(0, 'M'); // error correction level: medium
+    qr.addData(currentUrl);
+    qr.make();
+
+    // Masukkan QR ke dalam elemen
+    document.getElementById('qrcode').innerHTML = qr.createImgTag(6); // 6 = scale
+  </script>
+
+</body>
+</html>
